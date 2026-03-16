@@ -93,7 +93,7 @@
                         <div class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif italic" style="opacity:0.9;">Refresh. Renew. Repaint.</div>
                     </h1>
                     <p class="text-white text-base sm:text-lg md:text-xl mt-6 sm:mt-8 mb-8 sm:mb-12" style="opacity:0.75;">Professional painting services that bring new life to your property</p>
-                    <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"
+                    <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
                         class="bg-amber-800 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-sm sm:text-base font-medium hover:bg-amber-900 transition-all inline-flex items-center gap-2 whitespace-nowrap cursor-pointer">
                         Explore Our Work<i class="ri-arrow-right-line"></i>
                     </button>
@@ -116,13 +116,13 @@
                             <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-amber-900 leading-tight mb-8">We transform<br>spaces into beautiful,<br>lasting results.</h2>
                             <p class="text-lg text-gray-700 leading-relaxed mb-8">With over 5 years serving the Greater Toronto Area, Exclusive Painting has built its reputation on premium quality work, transparent pricing, and a team that truly cares. Every project — big or small — is treated with the same dedication to excellence.</p>
                             <p class="text-lg text-gray-700 leading-relaxed mb-10">From single-room refreshes to full home repaint and large commercial projects, we bring skill, care, and professional-grade materials to every job. Your satisfaction is our standard.</p>
-                            <div class="flex flex-wrap gap-4">
+                            <div class="flex flex-nowrap gap-4">
                                 <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
-                                    class="bg-amber-800 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-amber-900 transition-colors whitespace-nowrap cursor-pointer">
+                                    class="bg-amber-800 text-white px-6 py-3.5 rounded-full text-sm font-medium hover:bg-amber-900 transition-colors whitespace-nowrap cursor-pointer">
                                     Get a Free Quote
                                 </button>
                                 <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
-                                    class="border-2 border-amber-800 text-amber-800 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-amber-800 hover:text-white transition-all whitespace-nowrap cursor-pointer">
+                                    class="border-2 border-amber-800 text-amber-800 px-6 py-3.5 rounded-full text-sm font-medium hover:bg-amber-800 hover:text-white transition-all whitespace-nowrap cursor-pointer">
                                     Our Services
                                 </button>
                             </div>
@@ -288,27 +288,26 @@
                             <div class="mb-10">
                                 <p id="testi-quote" class="text-2xl md:text-3xl font-serif text-amber-900 leading-relaxed"></p>
                             </div>
-                            <!-- Author + nav arrows -->
-                            <div class="flex items-center justify-between flex-wrap gap-4">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-200 bg-amber-100 flex items-center justify-center">
-                                        <span id="testi-avatar" class="text-2xl font-bold text-amber-800 font-serif"></span>
-                                    </div>
-                                    <div>
-                                        <div id="testi-name" class="font-semibold text-lg text-amber-900"></div>
-                                        <div id="testi-role" class="text-sm text-amber-700"></div>
-                                    </div>
+                            <!-- Author -->
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-200 bg-amber-100 flex items-center justify-center">
+                                    <span id="testi-avatar" class="text-2xl font-bold text-amber-800 font-serif"></span>
                                 </div>
-                                <div class="hidden sm:flex items-center gap-3">
-                                    <button id="testi-prev"
-                                        class="w-12 h-12 rounded-lg border-2 border-amber-300 flex items-center justify-center hover:border-amber-800 transition-colors cursor-pointer">
-                                        <i class="ri-arrow-left-line text-amber-800"></i>
-                                    </button>
-                                    <button id="testi-next"
-                                        class="w-12 h-12 rounded-lg bg-amber-800 flex items-center justify-center hover:bg-amber-900 transition-colors cursor-pointer">
-                                        <i class="ri-arrow-right-line text-white"></i>
-                                    </button>
+                                <div>
+                                    <div id="testi-name" class="font-semibold text-lg text-amber-900"></div>
+                                    <div id="testi-role" class="text-sm text-amber-700"></div>
                                 </div>
+                            </div>
+                            <!-- Nav arrows — centered below reviewer -->
+                            <div class="flex items-center justify-center gap-3">
+                                <button id="testi-prev"
+                                    class="w-12 h-12 rounded-lg border-2 border-amber-300 flex items-center justify-center hover:border-amber-800 transition-colors cursor-pointer">
+                                    <i class="ri-arrow-left-line text-amber-800"></i>
+                                </button>
+                                <button id="testi-next"
+                                    class="w-12 h-12 rounded-lg bg-amber-800 flex items-center justify-center hover:bg-amber-900 transition-colors cursor-pointer">
+                                    <i class="ri-arrow-right-line text-white"></i>
+                                </button>
                             </div>
                         </div>
 
@@ -318,34 +317,25 @@
                 </div>
             </section>
 
-            <!-- ══ OUR EXPERTISE ══ -->
+            <!-- ══ WHY CHOOSE US ══ -->
             <section id="why-us" class="py-24 bg-gradient-to-br from-amber-50 to-orange-50">
                 <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                    <h2 class="text-5xl md:text-6xl font-serif text-amber-900 text-center mb-16">Our Expertise</h2>
+                    <h2 class="text-5xl md:text-6xl font-serif text-amber-900 text-center mb-16">Why Choose Us</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100">
                             <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-palette-line text-3xl text-amber-700"></i></div>
                             <h3 class="text-2xl font-bold text-amber-900 mb-4">5+ Years Experience</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">A proven track record across hundreds of residential and commercial projects throughout the GTA. We've seen it all and know how to handle every surface and challenge.</p>
-                            <div class="mt-6 pt-6 border-t border-amber-100">
-                                <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
-                            </div>
                         </div>
-                        <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100">
+                        <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-amber-100">
                             <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-layout-line text-3xl text-amber-700"></i></div>
                             <h3 class="text-2xl font-bold text-amber-900 mb-4">Premium Quality Work</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">We use top-grade, professional paints and materials only. Proper preparation, precise cutting, and flawless finishes — we don't cut corners, ever.</p>
-                            <div class="mt-6 pt-6 border-t border-amber-100">
-                                <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
-                            </div>
                         </div>
-                        <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100">
+                        <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-amber-100">
                             <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-smartphone-line text-3xl text-amber-700"></i></div>
                             <h3 class="text-2xl font-bold text-amber-900 mb-4">Affordable Pricing</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">Transparent, itemized quotes with no hidden fees or surprise charges. You get premium craftsmanship at prices that genuinely fit your budget.</p>
-                            <div class="mt-6 pt-6 border-t border-amber-100">
-                                <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -623,14 +613,6 @@
 
         document.getElementById('testi-prev').addEventListener('click', () => goTo(current - 1));
         document.getElementById('testi-next').addEventListener('click', () => goTo(current + 1));
-
-        // Touch swipe for mobile
-        let touchStartX = 0;
-        content.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
-        content.addEventListener('touchend', e => {
-            const diff = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-        }, { passive: true });
 
         // Initialise
         render();
