@@ -1,1 +1,1038 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exclusive Painting – Premium Painting Services in GTA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a3c5e;
+      --accent: #e8a020;
+      --accent-light: #f5c460;
+      --white: #ffffff;
+      --light-bg: #f7f9fc;
+      --dark: #0f2337;
+      --gray: #6b7a90;
+      --light-gray: #e8edf3;
+      --text: #2d3a4a;
+      --radius: 12px;
+      --shadow: 0 8px 30px rgba(26,60,94,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15,35,55,0.96);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      transition: background 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--white);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text span:last-child {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--accent-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover { color: var(--accent-light); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent-light) !important; color: var(--dark) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 60%, #2a5f8f 100%);
+      display: flex;
+      align-items: center;
+      padding: 90px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,160,32,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #home::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 640px;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,160,32,0.15);
+      border: 1px solid rgba(232,160,32,0.4);
+      color: var(--accent-light);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge i { font-size: 12px; }
+
+    .hero-content h1 {
+      font-size: clamp(38px, 5.5vw, 64px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 span {
+      color: var(--accent);
+      position: relative;
+    }
+
+    .hero-content p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(232,160,32,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(232,160,32,0.45);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: left;
+    }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-visual {
+      position: absolute;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42%;
+      max-width: 540px;
+      z-index: 1;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(232,160,32,0.2) 0%, rgba(26,60,94,0.4) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-img-placeholder i {
+      font-size: 64px;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .hero-img-placeholder span {
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 90px 5%; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-title span { color: var(--accent); }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .section-header { margin-bottom: 56px; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--light-bg); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(26,60,94,0.18);
+      border-bottom-color: var(--accent);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), #2a5f8f);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--white);
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(-5deg);
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    }
+
+    .service-card h3 {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── WHY CHOOSE US ── */
+    #why {
+      background: var(--white);
+    }
+
+    .why-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .why-visual {
+      position: relative;
+    }
+
+    .why-img-bg {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, #2a5f8f 100%);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-img-bg i {
+      font-size: 80px;
+      color: rgba(232,160,32,0.5);
+    }
+
+    .why-badge-float {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(232,160,32,0.4);
+    }
+
+    .why-badge-float .num {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .why-badge-float .lbl {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 20px 22px;
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      transition: all 0.25s;
+    }
+
+    .why-item:hover {
+      background: var(--primary);
+      transform: translateX(6px);
+    }
+
+    .why-item:hover .why-icon { background: var(--accent); }
+    .why-item:hover .why-text h4 { color: var(--white); }
+    .why-item:hover .why-text p { color: rgba(255,255,255,0.7); }
+
+    .why-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 18px;
+      transition: background 0.25s;
+    }
+
+    .why-text h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+      transition: color 0.25s;
+    }
+
+    .why-text p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+      transition: color 0.25s;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      color: var(--white);
+    }
+
+    #contact .section-title { color: var(--white); }
+    #contact .section-sub { color: rgba(255,255,255,0.7); }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-info-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      background: rgba(232,160,32,0.15);
+      border: 1px solid rgba(232,160,32,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      font-size: 18px;
+    }
+
+    .contact-info-text h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .contact-info-text p, .contact-info-text a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      line-height: 1.6;
+    }
+
+    .contact-info-text a:hover { color: var(--accent-light); }
+
+    .contact-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .contact-form h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary), #2a5f8f);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .form-submit:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232,160,32,0.35);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: #e8f5e9;
+      border-radius: 8px;
+      color: #2e7d32;
+      font-size: 15px;
+      font-weight: 500;
+      margin-top: 12px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 5%;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
+      .why-wrapper { grid-template-columns: 1fr; }
+      .why-visual { display: none; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px; left: 0; right: 0;
+        background: var(--dark);
+        padding: 20px 5% 30px;
+        gap: 16px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .contact-form { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <div class="logo-icon"><i class="fas fa-paint-roller"></i></div>
+    <div class="logo-text">
+      <span>Exclusive Painting</span>
+      <span>GTA's Premium Choice</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-star"></i> Trusted Across the Greater Toronto Area
+    </div>
+    <h1>Transform Your Space with <span>Exclusive</span> Painting</h1>
+    <p>Premium painting services delivered by an experienced, professional team. Quality craftsmanship at prices that work for you — residential and commercial across the GTA.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        <i class="fas fa-envelope"></i> Get a Free Quote
+      </a>
+      <a href="#services" class="btn-outline">
+        <i class="fas fa-brush"></i> Our Services
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-img-placeholder">
+        <i class="fas fa-paint-roller"></i>
+        <span>Premium Painting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <div class="section-label"><i class="fas fa-brush"></i> What We Do</div>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-sub">From interiors to exteriors, we handle every project with precision, care, and premium materials.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-home"></i></div>
+      <h3>Interior Painting</h3>
+      <p>Flawless interior finishes for living rooms, bedrooms, kitchens, and more. Clean prep work, premium paints, and immaculate results every time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-building"></i></div>
+      <h3>Exterior Painting</h3>
+      <p>Weather-resistant exterior coatings that protect and beautify your home or business. We work with all surfaces — siding, brick, stucco, and trim.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-tools"></i></div>
+      <h3>Drywall Repairs</h3>
+      <p>Cracks, holes, and surface imperfections expertly repaired and seamlessly blended before painting, ensuring a perfect smooth finish.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-door-open"></i></div>
+      <h3>Cabinet Painting</h3>
+      <p>Give your kitchen or bathroom a fresh, modern look with our professional cabinet painting — cost-effective alternative to a full renovation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-tree"></i></div>
+      <h3>Staining</h3>
+      <p>Enhance and protect wood surfaces including decks, fences, and furniture with our expert staining services for lasting beauty and durability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="why-wrapper">
+    <div class="why-visual">
+      <div class="why-img-bg">
+        <i class="fas fa-award"></i>
+        <span style="color:rgba(255,255,255,0.5);font-size:14px;letter-spacing:2px;text-transform:uppercase;">Excellence in Every Coat</span>
+      </div>
+      <div class="why-badge-float">
+        <div class="num">5+</div>
+        <div class="lbl">Years of Trust</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label"><i class="fas fa-check-circle"></i> Why Choose Us</div>
+      <h2 class="section-title">Why <span>Exclusive</span> Painting?</h2>
+      <p class="section-sub" style="margin-bottom:36px;">We don't just paint — we transform spaces. Here's why GTA homeowners and businesses trust us.</p>
+
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-medal"></i></div>
+          <div class="why-text">
+            <h4>5+ Years Experience</h4>
+            <p>A proven track record of excellence across hundreds of residential and commercial projects in the GTA.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-star"></i></div>
+          <div class="why-text">
+            <h4>Premium Quality Work</h4>
+            <p>We use top-grade paints and materials, ensuring a long-lasting, flawless finish on every job.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-tag"></i></div>
+          <div class="why-text">
+            <h4>Affordable Pricing</h4>
+            <p>Transparent, competitive quotes with no hidden fees. Premium quality doesn't have to break the bank.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-user-check"></i></div>
+          <div class="why-text">
+            <h4>Clean &amp; Professional Team</h4>
+            <p>Our team arrives on time, works cleanly, and leaves your space spotless — we respect your home.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="why-text">
+            <h4>Serving All Across GTA</h4>
+            <p>We serve Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, and surrounding areas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div>
+      <div class="section-label"><i class="fas fa-envelope"></i> Get In Touch</div>
+      <h2 class="section-title">Request a <span style="color:var(--accent-light)">Free Quote</span></h2>
+      <p class="section-sub" style="margin-bottom:40px;">Ready to transform your space? Contact us today and we'll get back to you with a free, no-obligation estimate.</p>
+
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-info-text">
+            <h4>Service Area</h4>
+            <p>Greater Toronto Area (GTA)<br>Toronto, Mississauga, Brampton, Vaughan &amp; more</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-info-text">
+            <h4>Phone</h4>
+            <a href="tel:+14161234567">(416) 123-4567</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-info-text">
+            <h4>Email</h4>
+            <a href="mailto:info@exclusivepainting.ca">info@exclusivepainting.ca</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+          <div class="contact-info-text">
+            <h4>Hours</h4>
+            <p>Monday – Friday: 8am – 7pm<br>Saturday: 9am – 5pm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3><i class="fas fa-paint-brush" style="color:var(--accent);margin-right:10px;"></i>Get Your Free Estimate</h3>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" placeholder="John" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name *</label>
+            <input type="text" id="lname" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="(416) 000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed *</label>
+          <select id="service" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Interior Painting</option>
+            <option>Exterior Painting</option>
+            <option>Drywall Repairs</option>
+            <option>Cabinet Painting</option>
+            <option>Staining</option>
+            <option>Multiple / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="city">City / Area</label>
+          <input type="text" id="city" placeholder="e.g. Toronto, Mississauga…" />
+        </div>
+        <div class="form-group">
+          <label for="message">Project Details</label>
+          <textarea id="message" placeholder="Tell us a bit about your project…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          <i class="fas fa-paper-plane"></i> Send My Request
+        </button>
+        <div class="form-success" id="formSuccess">
+          <i class="fas fa-check-circle"></i> Thanks! We'll be in touch within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2024 <strong style="color:var(--white)">Exclusive Painting</strong>. All rights reserved. Proudly serving the <a href="#contact">Greater Toronto Area</a>.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Smooth active nav on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(15,35,55,0.98)'
+      : 'rgba(15,35,55,0.96)';
+  });
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+    setTimeout(() => {
+      btn.style.display = 'none';
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'flex';
+    }, 1200);
+  }
+</script>
+</body>
+</html>
