@@ -88,7 +88,7 @@
                 <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-24 sm:pt-20">
                     <h1 class="text-white mb-4 sm:mb-6">
                         <div class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3 sm:mb-4 leading-tight">
-                            <span style="color:#FF1744">E</span><span style="color:#FF6D00">X</span><span style="color:#FFD600">C</span><span style="color:#00C853">L</span><span style="color:#00BCD4">U</span><span style="color:#2979FF">S</span><span style="color:#AA00FF">I</span><span style="color:#F50057">V</span><span style="color:#FF1744">E</span>&nbsp;<span style="color:#FF6D00">P</span><span style="color:#FFD600">A</span><span style="color:#00C853">I</span><span style="color:#00BCD4">N</span><span style="color:#2979FF">T</span><span style="color:#AA00FF">I</span><span style="color:#F50057">N</span><span style="color:#FF1744">G</span>
+                            <span style="color:#FFB3B3">E</span><span style="color:#FFCC99">X</span><span style="color:#FFF176">C</span><span style="color:#B9F6CA">L</span><span style="color:#B2EBF2">U</span><span style="color:#BBDEFB">S</span><span style="color:#E1BEE7">I</span><span style="color:#F8BBD0">V</span><span style="color:#FFB3B3">E</span>&nbsp;<span style="color:#FFCC99">P</span><span style="color:#FFF176">A</span><span style="color:#B9F6CA">I</span><span style="color:#B2EBF2">N</span><span style="color:#BBDEFB">T</span><span style="color:#E1BEE7">I</span><span style="color:#F8BBD0">N</span><span style="color:#FFB3B3">G</span>
                         </div>
                         <div class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif italic" style="opacity:0.9;">Refresh. Renew. Repaint.</div>
                     </h1>
@@ -299,7 +299,7 @@
                                         <div id="testi-role" class="text-sm text-amber-700"></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-3">
+                                <div class="hidden sm:flex items-center gap-3">
                                     <button id="testi-prev"
                                         class="w-12 h-12 rounded-lg border-2 border-amber-300 flex items-center justify-center hover:border-amber-800 transition-colors cursor-pointer">
                                         <i class="ri-arrow-left-line text-amber-800"></i>
@@ -623,6 +623,14 @@
 
         document.getElementById('testi-prev').addEventListener('click', () => goTo(current - 1));
         document.getElementById('testi-next').addEventListener('click', () => goTo(current + 1));
+
+        // Touch swipe for mobile
+        let touchStartX = 0;
+        content.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+        content.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        }, { passive: true });
 
         // Initialise
         render();
