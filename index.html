@@ -1,1340 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exclusive Painting – Premium Painting Services in GTA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --rust:       #7c3d1e;
-      --rust-mid:   #9e4f28;
-      --rust-light: #c4784a;
-      --cream:      #faf7f2;
-      --cream-dark: #f0ebe1;
-      --dark:       #1c1a18;
-      --text:       #3a3530;
-      --gray:       #7a7268;
-      --border:     #e8e0d4;
-      --white:      #ffffff;
-      --footer-bg:  #2b1a0c;
-      --shadow-sm:  0 2px 12px rgba(0,0,0,0.06);
-      --shadow-md:  0 8px 32px rgba(0,0,0,0.10);
-      --radius:     12px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
-
-    /* ══════════════════════ NAV ══════════════════════ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: transparent;
-      border-bottom: 1px solid transparent;
-      height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 6%;
-      transition: background 0.35s, border-color 0.35s, backdrop-filter 0.35s;
-    }
-    nav.nav-scrolled {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px; background: var(--rust);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 16px;
-    }
-    .nav-logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px; font-weight: 700;
-      color: var(--white);
-      letter-spacing: 0.3px;
-      transition: color 0.35s;
-    }
-    nav.nav-scrolled .nav-logo-name { color: var(--dark); }
-
-    .nav-links {
-      display: flex; gap: 36px; list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none; font-size: 14px; font-weight: 500;
-      color: rgba(255,255,255,0.9); transition: color 0.2s;
-    }
-    nav.nav-scrolled .nav-links a { color: var(--text); }
-    .nav-links a:hover { color: var(--rust-light); }
-    nav.nav-scrolled .nav-links a:hover { color: var(--rust); }
-
-    .nav-cta {
-      background: var(--rust); color: var(--white);
-      padding: 9px 22px; border-radius: 6px;
-      font-size: 13px; font-weight: 600; text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--rust-mid); }
-
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
-    nav.nav-scrolled .hamburger span { background: var(--dark); }
-
-    /* ══════════════════════ HERO ══════════════════════ */
-    #home {
-      min-height: 100vh;
-      background: linear-gradient(rgba(18,12,6,0.68), rgba(28,18,8,0.72)),
-        url('https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1920&q=80') center/cover no-repeat;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 100px 6% 80px;
-    }
-
-    .hero-inner { max-width: 760px; }
-
-    .hero-inner h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(44px, 6vw, 78px);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -0.5px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-
-    .hero-inner .hero-sub {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(20px, 2.5vw, 28px);
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 20px;
-    }
-
-    .hero-inner .hero-desc {
-      font-size: 15px;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.75;
-      margin-bottom: 40px;
-      max-width: 520px;
-      margin-left: auto; margin-right: auto;
-    }
-
-    .hero-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--rust); color: var(--white);
-      padding: 14px 32px; border-radius: 6px;
-      font-size: 15px; font-weight: 600; text-decoration: none;
-      transition: all 0.2s;
-    }
-    .hero-btn:hover { background: var(--rust-mid); transform: translateY(-2px); }
-    .hero-btn i { font-size: 13px; }
-
-    .hero-stats {
-      display: flex; justify-content: center; gap: 48px;
-      margin-top: 52px; flex-wrap: wrap;
-    }
-    .hero-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px; font-weight: 700; color: var(--white); line-height: 1;
-    }
-    .hero-stat-lbl {
-      font-size: 11px; color: rgba(255,255,255,0.55);
-      text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px;
-    }
-
-    /* ══════════════════════ SHARED SECTION STYLES ══════════════════════ */
-    .section-paren {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 700;
-      color: var(--dark);
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    section { padding: 96px 6%; }
-
-    /* ══════════════════════ OUR SERVICES (Case Studies style) ══════════════════════ */
-    #services {
-      background: var(--white);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .svc-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-    .svc-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .svc-card-img {
-      width: 100%; height: 190px;
-      position: relative; overflow: hidden;
-      display: flex; align-items: flex-start; padding: 14px;
-    }
-    .svc-card-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--white);
-      color: var(--rust);
-      font-size: 11px; font-weight: 600;
-      padding: 5px 12px; border-radius: 50px;
-      box-shadow: var(--shadow-sm);
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .svc-card-tag i { font-size: 10px; }
-
-    .svc-img-int  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/interior.png') center/cover no-repeat; }
-    .svc-img-ext  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/exterior.jpg') center/cover no-repeat; }
-    .svc-img-dry  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/drywall.jpeg') center/cover no-repeat; }
-    .svc-img-cab  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/cabinet.png') center/cover no-repeat; }
-    .svc-img-sta  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/staining.jpeg') center/cover no-repeat; }
-    .svc-img-com  { background: linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.28)), url('images/commercial.png') center/cover no-repeat; }
-
-    .svc-img-icon {
-      position: absolute; bottom: 16px; right: 20px;
-      font-size: 52px; color: rgba(255,255,255,0.18);
-    }
-
-    .svc-card-body {
-      padding: 22px 24px 26px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .svc-card-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 19px; font-weight: 700;
-      color: var(--dark); margin-bottom: 10px; line-height: 1.3;
-    }
-    .svc-card-body p {
-      font-size: 13.5px; color: var(--gray); line-height: 1.7;
-    }
-
-    /* ══════════════════════ WHO WE ARE ══════════════════════ */
-    #about {
-      background: var(--cream);
-    }
-
-    .about-wrap {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 72px; align-items: center;
-    }
-
-    .about-label {
-      font-size: 12px; font-weight: 600; color: var(--rust);
-      text-transform: uppercase; letter-spacing: 3px;
-      margin-bottom: 18px;
-    }
-
-    .about-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 3.5vw, 50px);
-      font-weight: 800;
-      color: var(--rust);
-      line-height: 1.1;
-      margin-bottom: 28px;
-    }
-
-    .about-text {
-      font-size: 14.5px; color: var(--gray);
-      line-height: 1.8; margin-bottom: 16px;
-    }
-
-    .about-btns {
-      display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px;
-    }
-
-    .btn-solid {
-      background: var(--rust); color: var(--white);
-      padding: 11px 26px; border-radius: 6px;
-      font-size: 14px; font-weight: 600; text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-solid:hover { background: var(--rust-mid); }
-
-    .btn-ghost {
-      border: 1.5px solid var(--rust); color: var(--rust);
-      padding: 10px 24px; border-radius: 6px;
-      font-size: 14px; font-weight: 600; text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-ghost:hover { background: var(--rust); color: var(--white); }
-
-    .about-right { position: relative; }
-
-    .about-imgs {
-      position: relative; height: 340px;
-    }
-
-    .about-img-a, .about-img-b {
-      position: absolute;
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .about-img-a {
-      width: 60%; height: 240px;
-      top: 0; left: 0;
-      background: linear-gradient(135deg, #c4a882 0%, #7a5030 100%);
-    }
-    .about-img-b {
-      width: 52%; height: 200px;
-      bottom: 0; right: 0;
-      background: linear-gradient(135deg, #5a7a8a 0%, #2a4a5a 100%);
-      border: 4px solid var(--cream);
-    }
-    .about-img-a i, .about-img-b i {
-      font-size: 48px; color: rgba(255,255,255,0.25);
-    }
-
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin-top: 28px;
-    }
-
-    .about-stat {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-    .about-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px; font-weight: 700; color: var(--rust); line-height: 1;
-    }
-    .about-stat-lbl {
-      font-size: 12px; color: var(--gray);
-      margin-top: 5px; line-height: 1.4;
-    }
-
-    /* ══════════════════════ TESTIMONIALS ══════════════════════ */
-    #testimonials { background: var(--white); }
-
-    .testimonials-inner {
-      max-width: 760px; margin: 0 auto;
-    }
-
-    #testiSlide {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    #testiSlide.testi-fade {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-
-    .testi-rating {
-      display: flex; align-items: center; gap: 6px;
-      margin-bottom: 28px;
-    }
-    .testi-rating-score {
-      background: var(--rust); color: var(--white);
-      font-size: 13px; font-weight: 700;
-      padding: 4px 10px; border-radius: 6px;
-    }
-    .testi-rating-stars { color: var(--rust); font-size: 15px; letter-spacing: 2px; }
-
-    .testi-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(17px, 2.2vw, 22px);
-      color: var(--dark);
-      line-height: 1.65;
-      margin-bottom: 32px;
-    }
-
-    .testi-author {
-      display: flex; align-items: center; gap: 16px;
-    }
-    .testi-avatar {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--rust-light), var(--rust));
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 18px; font-weight: 700;
-      font-family: 'Playfair Display', serif;
-      flex-shrink: 0;
-    }
-    .testi-name {
-      font-size: 15px; font-weight: 600; color: var(--dark);
-    }
-    .testi-role {
-      font-size: 13px; color: var(--gray); margin-top: 2px;
-    }
-
-    .testi-nav {
-      display: flex; align-items: center; gap: 12px; margin-top: 36px;
-    }
-    .testi-nav-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s;
-      background: var(--white); color: var(--text); font-size: 14px;
-    }
-    .testi-nav-btn:hover, .testi-nav-btn.active {
-      background: var(--rust); color: var(--white); border-color: var(--rust);
-    }
-    .testi-dots {
-      display: flex; gap: 6px; margin: 0 6px;
-    }
-    .testi-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border); cursor: pointer; transition: background 0.2s;
-    }
-    .testi-dot.active { background: var(--rust); }
-
-    /* ══════════════════════ WHY CHOOSE US (Expertise style) ══════════════════════ */
-    #why { background: var(--cream); }
-
-    .why-title-wrap {
-      text-align: center; margin-bottom: 52px;
-    }
-    .why-title-wrap h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3vw, 40px);
-      font-weight: 700;
-      color: var(--dark);
-      display: inline;
-    }
-    .why-highlight {
-      background: var(--dark); color: var(--white);
-      padding: 2px 10px; border-radius: 4px;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3vw, 40px);
-      font-weight: 700;
-    }
-
-    .why-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .why-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px 26px 28px;
-      transition: all 0.3s;
-      position: relative;
-    }
-    .why-card:hover {
-      border-color: var(--rust-light);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-    }
-
-    .why-card-icon {
-      width: 44px; height: 44px;
-      background: var(--cream-dark);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--rust); font-size: 18px;
-      margin-bottom: 18px;
-      transition: all 0.3s;
-    }
-    .why-card:hover .why-card-icon {
-      background: var(--rust); color: var(--white);
-    }
-
-    .why-card h3 {
-      font-size: 16px; font-weight: 600; color: var(--dark);
-      margin-bottom: 10px;
-    }
-    .why-card p {
-      font-size: 13.5px; color: var(--gray); line-height: 1.7;
-    }
-
-    /* ══════════════════════ CTA / TRANSFORM ══════════════════════ */
-    #cta { background: var(--white); }
-
-    .cta-top {
-      text-align: center; margin-bottom: 56px;
-    }
-    .cta-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 800;
-      color: var(--dark);
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .cta-sub {
-      font-size: 15px; color: var(--gray);
-    }
-
-    /* Split layout: form left, contact details right */
-    .cta-split {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    /* ── CTA form box (left) ── */
-    .cta-form-box {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-    }
-    .cta-form-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 24px;
-    }
-
-    /* ── CTA contact right panel ── */
-    .cta-contact-panel {
-      display: flex; flex-direction: column; gap: 32px;
-    }
-    .cta-contact-panel .cta-panel-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(22px, 2.5vw, 30px); font-weight: 700;
-      color: var(--dark); line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .cta-contact-panel .cta-panel-sub {
-      font-size: 14px; color: var(--gray); line-height: 1.75;
-    }
-    .cta-info-list {
-      display: flex; flex-direction: column; gap: 22px;
-    }
-    .cta-ci-item {
-      display: flex; gap: 16px; align-items: flex-start;
-    }
-    .cta-ci-icon {
-      width: 46px; height: 46px; min-width: 46px;
-      background: var(--cream); border: 1px solid var(--border);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--rust); font-size: 17px;
-    }
-    .cta-ci-text h4 {
-      font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px;
-    }
-    .cta-ci-text p, .cta-ci-text a {
-      font-size: 13.5px; color: var(--gray); text-decoration: none; line-height: 1.55;
-    }
-    .cta-ci-text a:hover { color: var(--rust); }
-
-    .cta-logos {
-      margin-top: 64px;
-      border-top: 1px solid var(--border);
-      padding-top: 40px;
-      text-align: center;
-    }
-    .cta-logos-label {
-      font-size: 12px; color: var(--gray);
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-    .cta-logos-row {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: 40px;
-    }
-    .cta-logo-item {
-      font-family: 'Playfair Display', serif;
-      font-size: 15px; font-weight: 700;
-      color: #b0a898; letter-spacing: 0.5px;
-      transition: color 0.2s;
-    }
-    .cta-logo-item:hover { color: var(--rust); }
-
-    @media (max-width: 820px) {
-      .cta-split { grid-template-columns: 1fr; }
-    }
-
-    /* ══════════════════════ CONTACT FORM ══════════════════════ */
-    #contact {
-      background: var(--cream);
-    }
-
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1.3fr;
-      gap: 64px; align-items: start;
-    }
-
-    .contact-left .section-label {
-      font-size: 12px; font-weight: 600; color: var(--rust);
-      text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
-    }
-
-    .contact-left h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 3vw, 38px); font-weight: 700;
-      color: var(--dark); margin-bottom: 16px; line-height: 1.2;
-    }
-
-    .contact-left p {
-      font-size: 14.5px; color: var(--gray); line-height: 1.8; margin-bottom: 32px;
-    }
-
-    .contact-info-items { display: flex; flex-direction: column; gap: 20px; }
-
-    .ci-item { display: flex; gap: 14px; align-items: flex-start; }
-
-    .ci-icon {
-      width: 42px; height: 42px; min-width: 42px;
-      background: var(--white); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--rust); font-size: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-    .ci-text h4 { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
-    .ci-text p, .ci-text a {
-      font-size: 13px; color: var(--gray); text-decoration: none; line-height: 1.5;
-    }
-    .ci-text a:hover { color: var(--rust); }
-
-    .contact-form-box {
-      background: var(--white); border-radius: 16px;
-      padding: 40px; box-shadow: var(--shadow-md);
-    }
-
-    .contact-form-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 24px;
-    }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-
-    .fg label { font-size: 12px; font-weight: 600; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .fg input, .fg select, .fg textarea {
-      padding: 11px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; color: var(--text);
-      background: var(--white);
-      outline: none; transition: border-color 0.2s;
-      width: 100%;
-    }
-    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--rust); }
-    .fg textarea { resize: vertical; min-height: 100px; }
-
-    .form-btn {
-      width: 100%; padding: 13px;
-      background: var(--rust); color: var(--white);
-      border: none; border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; font-weight: 600; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: all 0.2s; margin-top: 4px;
-    }
-    .form-btn:hover { background: var(--rust-mid); transform: translateY(-1px); }
-
-    .form-ok {
-      display: none; text-align: center; padding: 16px;
-      background: #f0faf0; border-radius: 8px;
-      color: #2e7d32; font-size: 14px; font-weight: 500;
-      margin-top: 12px; align-items: center; gap: 8px;
-    }
-
-    /* ══════════════════════ FOOTER ══════════════════════ */
-    footer {
-      background: var(--footer-bg);
-      padding: 64px 6% 32px;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .footer-top {
-      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
-      gap: 48px; padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .footer-brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 700; color: var(--white);
-      margin-bottom: 12px;
-    }
-    .footer-brand-desc {
-      font-size: 13px; line-height: 1.75; margin-bottom: 24px;
-    }
-
-    .footer-col-title {
-      font-size: 13px; font-weight: 600; color: var(--white);
-      text-transform: uppercase; letter-spacing: 1.5px;
-      margin-bottom: 18px;
-    }
-
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--rust-light); }
-
-    .footer-newsletter {
-      display: flex; gap: 0; margin-top: 4px;
-    }
-    .footer-newsletter input {
-      flex: 1; padding: 10px 14px;
-      border: none; border-radius: 6px 0 0 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px; outline: none;
-      background: rgba(255,255,255,0.1);
-      color: var(--white);
-    }
-    .footer-newsletter input::placeholder { color: rgba(255,255,255,0.35); }
-    .footer-newsletter button {
-      background: var(--rust); color: var(--white);
-      border: none; padding: 10px 16px; border-radius: 0 6px 6px 0;
-      cursor: pointer; font-size: 14px; transition: background 0.2s;
-    }
-    .footer-newsletter button:hover { background: var(--rust-mid); }
-
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px; padding-top: 28px;
-      font-size: 12.5px;
-    }
-    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    .footer-bottom a:hover { color: var(--rust-light); }
-    .footer-bottom-links { display: flex; gap: 24px; }
-
-    /* ══════════════════════ RESPONSIVE ══════════════════════ */
-    @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 820px) {
-      .about-wrap { grid-template-columns: 1fr; }
-      .about-imgs { height: 260px; }
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; top: 64px; left: 0; right: 0;
-        background: var(--white);
-        padding: 20px 6% 28px;
-        border-bottom: 1px solid var(--border);
-        gap: 16px;
-      }
-      .hamburger { display: flex; }
-      .nav-cta { display: none; }
-      .services-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Painting</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={theme:{extend:{colors:{primary:'#16a34a',secondary:'#1f2937'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+    </style>
 </head>
-<body>
 
-<!-- ══ NAV ══ -->
-<nav id="navbar">
-  <a href="#home" class="nav-logo">
-    <div class="nav-logo-icon"><i class="fas fa-paint-roller"></i></div>
-    <span class="nav-logo-name">Exclusive Painting</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Get a Free Quote</a>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- ══ HERO ══ -->
-<section id="home">
-  <div class="hero-inner">
-    <h1>Exclusive<br>Painting</h1>
-    <p class="hero-sub">Where Quality Meets Craftsmanship</p>
-    <p class="hero-desc">Transforming homes and businesses across the Greater Toronto Area with premium painting services at affordable prices — delivered by a clean, professional team.</p>
-    <a href="#contact" class="hero-btn">
-      Get a Free Quote &nbsp;<i class="fas fa-arrow-right"></i>
-    </a>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">5+</div>
-        <div class="hero-stat-lbl">Years Experience</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">500+</div>
-        <div class="hero-stat-lbl">Projects Completed</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">GTA</div>
-        <div class="hero-stat-lbl">Wide Coverage</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ OUR SERVICES ══ -->
-<section id="services">
-  <h2 class="section-paren">(Our Services)</h2>
-  <div class="services-grid">
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-int">
-        <span class="svc-card-tag"><i class="fas fa-home"></i> Interior</span>
-        <i class="fas fa-home svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Interior Painting</h3>
-        <p>Flawless, smooth finishes for every room in your home — from ceilings to trim. We prep surfaces properly, use premium paints, and leave your space spotless.</p>
-      </div>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-ext">
-        <span class="svc-card-tag"><i class="fas fa-building"></i> Exterior</span>
-        <i class="fas fa-building svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Exterior Painting</h3>
-        <p>Long-lasting, weather-resistant coatings that protect and refresh your home's curb appeal. We work with all surfaces — siding, brick, stucco, wood, and trim.</p>
-      </div>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-dry">
-        <span class="svc-card-tag"><i class="fas fa-tools"></i> Repairs</span>
-        <i class="fas fa-tools svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Drywall Repairs</h3>
-        <p>Holes, cracks, and water damage expertly repaired and seamlessly blended. Every surface imperfection is fixed before paint is ever applied for a perfect result.</p>
-      </div>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-cab">
-        <span class="svc-card-tag"><i class="fas fa-door-open"></i> Cabinets</span>
-        <i class="fas fa-door-open svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Cabinet Painting</h3>
-        <p>Give your kitchen or bathroom a stunning refresh without the cost of a full renovation. We sand, prime, and paint cabinets to a factory-quality finish that lasts.</p>
-      </div>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-sta">
-        <span class="svc-card-tag"><i class="fas fa-tree"></i> Staining</span>
-        <i class="fas fa-tree svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Staining</h3>
-        <p>Enhance and protect natural wood surfaces including decks, fences, pergolas, and furniture. Our staining services bring out the beauty of the wood grain and seal it for years.</p>
-      </div>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-card-img svc-img-com">
-        <span class="svc-card-tag"><i class="fas fa-briefcase"></i> Commercial</span>
-        <i class="fas fa-briefcase svc-img-icon"></i>
-      </div>
-      <div class="svc-card-body">
-        <h3>Commercial Painting</h3>
-        <p>Professional painting for offices, retail spaces, and commercial properties. We work around your schedule to minimize disruption and deliver on time, every time.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══ WHO WE ARE ══ -->
-<section id="about">
-  <div class="about-wrap">
-    <div>
-      <p class="about-label">Who We Are</p>
-      <h2 class="about-heading">We transform spaces into<br>beautiful, lasting<br>results.</h2>
-      <p class="about-text">With over 5 years serving the Greater Toronto Area, Exclusive Painting has built its reputation on premium quality work, transparent pricing, and a team that truly cares. Every project — big or small — is treated with the same dedication to excellence.</p>
-      <p class="about-text">From single-room refreshes to full home repaint and large commercial projects, we bring skill, care, and professional-grade materials to every job. Your satisfaction is our standard.</p>
-      <div class="about-btns">
-        <a href="#contact" class="btn-solid">Get a Free Quote</a>
-        <a href="#services" class="btn-ghost">Our Services</a>
-      </div>
-    </div>
-
-    <div class="about-right">
-      <div class="about-imgs">
-        <div class="about-img-a"><i class="fas fa-paint-roller"></i></div>
-        <div class="about-img-b"><i class="fas fa-home"></i></div>
-      </div>
-      <div class="about-stats">
-        <div class="about-stat">
-          <div class="about-stat-num">500+</div>
-          <div class="about-stat-lbl">Projects Completed</div>
+<body data-new-gr-c-s-check-loaded="14.1277.0" data-gr-ext-installed="">
+    <div id="root">
+        <div class="min-h-screen bg-white">
+            <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0"><img alt="Design workspace" class="w-full h-full object-cover object-top" src="https://readdy.ai/api/search-image?query=abstract%20creative%20design%20workspace%20with%20sketches%20color%20swatches%20architectural%20models%20and%20design%20tools%20arranged%20artistically%20with%20warm%20amber%20coral%20gradient%20lighting%20soft%20focus%20on%20right%20side%20professional%20studio%20photography%20high%20quality&amp;width=1920&amp;height=1080&amp;seq=hero1&amp;orientation=landscape">
+                    <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40"></div>
+            </div>
+            <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-amber-50 shadow-md">
+                <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-20">
+                        <div class="text-2xl font-bold transition-colors text-amber-900">EXCLUSIVE PAINTING</div>
+                        <div class="hidden md:flex items-center gap-8"><a href="#projects" class="text-sm font-medium transition-colors hover:opacity-70 text-amber-800">Projects</a><a href="#about" class="text-sm font-medium transition-colors hover:opacity-70 text-amber-800">About</a><a href="#services"
+                            class="text-sm font-medium transition-colors hover:opacity-70 text-amber-800">Services</a><a href="#contact" class="text-sm font-medium transition-colors hover:opacity-70 text-amber-800">Contact</a></div>
+                        <button class="px-6 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer bg-amber-800 text-white hover:bg-amber-900">Request a Quote</button>
+                    </div>
+                </div>
+            </nav>
+            <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+                <h1 class="text-white mb-6"><div class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">EXCLUSIVE PAINTING</div><div class="text-4xl md:text-5xl lg:text-6xl font-serif italic" style="opacity: 0.9;">Refresh. Renew. Repaint.</div></h1>
+                <p class="text-white text-lg md:text-xl mt-8 mb-12" style="opacity: 0.75;">Professional painting services that bring new life to your property</p>
+                <button class="bg-amber-800 text-white px-12 py-4 rounded-full text-base font-medium hover:bg-amber-900 transition-all inline-flex items-center gap-2 whitespace-nowrap cursor-pointer">Explore Our Work<i class="ri-arrow-right-line"></i></button>
+            </div>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+                <div class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+                    <div class="w-1.5 h-3 bg-white/50 rounded-full animate-bounce"></div>
+                </div>
+            </div>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">400+</div>
-          <div class="about-stat-lbl">Happy Clients</div>
+       
+    <section id="about" class="py-24 bg-amber-50/30 ">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="text-sm font-medium text-amber-700 mb-4 tracking-wider uppercase">WHO WE ARE</div>
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-amber-900 leading-tight mb-8">We transform<br>spaces into
+					beautiful,<br>lasting
+					results.</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">With over 5 years serving the Greater Toronto Area, Exclusive Painting has built its reputation on premium quality work, transparent pricing, and a team that truly cares. Every project — big or small — is treated with the same dedication to excellence.</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-10">From single-room refreshes to full home repaint and large commercial projects, we bring skill, care, and professional-grade materials to every job. Your satisfaction is our standard.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-amber-800 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-amber-900 transition-colors whitespace-nowrap cursor-pointer">View Portfolio</button>
+                        <button class="border-2 border-amber-800 text-amber-800 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-amber-800 hover:text-white transition-all whitespace-nowrap cursor-pointer">Our Process</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="w-full h-64 rounded-3xl overflow-hidden shadow-lg"><img alt="Team collaboration" class="w-full h-full object-cover object-top" src="images/painter.png"></div>
+                        <div
+                        class="w-full h-64 rounded-3xl overflow-hidden shadow-lg mt-12"><img alt="Workspace" class="w-full h-full object-cover object-top" src="images/color.jpeg"></div>
+                </div>
+                <div class="mt-8 bg-white rounded-3xl shadow-xl p-8">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-800 mb-2">500+</div>
+                            <div class="text-sm text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-800 mb-2">300+</div>
+                            <div class="text-sm text-gray-600">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-800 mb-2">100%</div>
+                            <div class="text-sm text-gray-600">Satisfaction</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-800 mb-2">5+</div>
+                            <div class="text-sm text-gray-600">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">5+</div>
-          <div class="about-stat-lbl">Years Experience</div>
         </div>
-        <div class="about-stat">
-          <div class="about-stat-num">GTA</div>
-          <div class="about-stat-lbl">Wide Coverage</div>
-        </div>
-      </div>
+    </section>
+	 <section id="projects" class="py-24 bg-gradient-to-br from-amber-50 to-orange-50">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 class="text-5xl md:text-6xl font-serif text-amber-900 text-center mb-16">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group cursor-pointer" style="animation: 0.6s ease-out 0s 1 normal both running fadeInUp;">
+                        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+                            <div class="relative w-full h-96 overflow-hidden"><img alt="Zenith Banking" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/interior.png">
+                                <div
+                                class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Interior Painting</span></div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-3xl font-serif text-amber-900 mb-3">Interior Painting</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">Our interior painting services are designed to refresh and transform your living spaces with a clean, modern finish. We carefully prepare every surface to ensure smooth, long-lasting results. Using high-quality paints and professional techniques, we deliver precise work with attention to detail. Whether it’s a single room or your entire home, we help bring your vision to life.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="group cursor-pointer" style="animation: 0.6s ease-out 0.1s 1 normal both running fadeInUp;">
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+                        <div class="relative w-full h-96 overflow-hidden"><img alt="Verdant Spaces" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/exterior.jpg">
+                            <div
+                            class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Exterior Painting</span></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl font-serif text-amber-900 mb-3">Exterior Painting</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">Our exterior painting services help protect and enhance the look of your property. We use high-quality, weather-resistant paints designed to withstand harsh Canadian weather. Proper surface preparation ensures a smooth, durable finish that lasts for years. Whether it’s a house, garage, or commercial building, we deliver clean, professional results.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="group cursor-pointer" style="animation: 0.6s ease-out 0.2s 1 normal both running fadeInUp;">
+                <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+                    <div class="relative w-full h-96 overflow-hidden"><img alt="Artisan Collective" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/drywall.jpeg">
+                        <div
+                        class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Drywall Repairs</span></div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-3xl font-serif text-amber-900 mb-3">Drywall Repairs</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Our drywall repair services restore damaged walls and ceilings to a smooth, flawless finish. From small holes and cracks to larger repairs, we handle every job with precision and care. Proper patching, sanding, and preparation ensure the surface is ready for painting. The result is a seamless repair that blends perfectly with your existing walls.</p>
+                    
+                </div>
+            </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ TESTIMONIALS ══ -->
-<section id="testimonials">
-  <h2 class="section-paren">(What Our Clients Say)</h2>
-
-  <div class="testimonials-inner">
-    <div id="testiSlide">
-      <div class="testi-rating">
-        <span class="testi-rating-score">4.9</span>
-        <span class="testi-rating-stars">★★★★★</span>
-      </div>
-
-      <p class="testi-quote" id="testiQuote">
-        "The team at Exclusive Painting completely transformed our living room and kitchen. The prep work was thorough, the finish is flawless, and they were done ahead of schedule. We've already booked them for our exterior next spring."
-      </p>
-
-      <div class="testi-author">
-        <div class="testi-avatar" id="testiAvatar">S</div>
-        <div>
-          <div class="testi-name" id="testiName">Sarah M.</div>
-          <div class="testi-role" id="testiRole">Homeowner, Mississauga</div>
+    <div class="group cursor-pointer" style="animation: 0.6s ease-out 0.3s 1 normal both running fadeInUp;">
+        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+            <div class="relative w-full h-96 overflow-hidden"><img alt="Pulse Fitness" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/cabinet.png">
+                <div
+                class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Cabinet Painting</span></div>
         </div>
-
-        <div class="testi-nav" style="margin-left:auto; margin-top:0;">
-          <button class="testi-nav-btn" onclick="prevTesti()"><i class="fas fa-arrow-left"></i></button>
-          <div class="testi-dots" id="testiDots">
-            <div class="testi-dot active" onclick="goTesti(0)"></div>
-            <div class="testi-dot" onclick="goTesti(1)"></div>
-            <div class="testi-dot" onclick="goTesti(2)"></div>
-            <div class="testi-dot" onclick="goTesti(3)"></div>
-            <div class="testi-dot" onclick="goTesti(4)"></div>
-          </div>
-          <button class="testi-nav-btn" onclick="nextTesti()"><i class="fas fa-arrow-right"></i></button>
+        <div class="p-8">
+            <h3 class="text-3xl font-serif text-amber-900 mb-3">Cabinet Painting</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Our cabinet painting services give your kitchen or bathroom a fresh, modern look without the cost of replacement. We carefully prepare, sand, and prime each surface to ensure a smooth and durable finish. Using high-quality paints, we deliver a clean, factory-like result that lasts. It’s an affordable way to transform the look of your space.</p>
+            
         </div>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ WHY CHOOSE US ══ -->
-<section id="why">
-  <div class="why-title-wrap">
-    <h2>Why Choose </h2>
-    <span class="why-highlight">Exclusive Painting</span>
-  </div>
-
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-medal"></i></div>
-      <h3>5+ Years Experience</h3>
-      <p>A proven track record across hundreds of residential and commercial projects throughout the GTA. We've seen it all and know how to handle every surface and challenge.</p>
     </div>
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-star"></i></div>
-      <h3>Premium Quality Work</h3>
-      <p>We use top-grade, professional paints and materials only. Proper preparation, precise cutting, and flawless finishes — we don't cut corners, ever.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-tag"></i></div>
-      <h3>Affordable Pricing</h3>
-      <p>Transparent, itemized quotes with no hidden fees or surprise charges. You get premium craftsmanship at prices that genuinely fit your budget.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-user-check"></i></div>
-      <h3>Clean &amp; Professional Team</h3>
-      <p>We arrive on time, protect your furniture and floors, and leave every space cleaner than we found it. We treat your home like our own.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-      <h3>Serving All Across GTA</h3>
-      <p>From Toronto to Brampton, Mississauga, Vaughan, Markham, Richmond Hill, and beyond — no matter where you are in the GTA, we come to you.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon"><i class="fas fa-shield-alt"></i></div>
-      <h3>Fully Insured &amp; Reliable</h3>
-      <p>We're fully insured and stand behind our work. If something isn't right, we fix it — no questions asked. Your peace of mind is guaranteed.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ READY TO TRANSFORM ══ -->
-<section id="cta">
-  <div class="cta-top">
-    <h2 class="cta-heading">Ready to Transform Your Home?</h2>
-    <p class="cta-sub">Let's discuss your next painting project — get a free, no-obligation quote today.</p>
-  </div>
-
-  <div class="cta-split">
-
-    <!-- LEFT: quick contact form -->
-    <div class="cta-form-box">
-      <h3>Get a Free Estimate</h3>
-      <form onsubmit="submitForm(event)" data-ok="ctaFormOk">
-        <div class="form-row">
-          <div class="fg">
-            <label>First Name *</label>
-            <input type="text" placeholder="John" required />
-          </div>
-          <div class="fg">
-            <label>Last Name *</label>
-            <input type="text" placeholder="Smith" required />
-          </div>
+    <div class="group cursor-pointer" style="animation: 0.6s ease-out 0.4s 1 normal both running fadeInUp;">
+        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+            <div class="relative w-full h-96 overflow-hidden"><img alt="Lumina Cosmetics" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/staining.jpeg">
+                <div
+                class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Staining</span></div>
         </div>
-        <div class="form-row">
-          <div class="fg">
-            <label>Email *</label>
-            <input type="email" placeholder="john@email.com" required />
-          </div>
-          <div class="fg">
-            <label>Phone</label>
-            <input type="tel" placeholder="(416) 000-0000" />
-          </div>
+        <div class="p-8">
+            <h3 class="text-3xl font-serif text-amber-900 mb-3">Staining</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Our staining services enhance the natural beauty of wood while providing long-lasting protection. We carefully prepare and apply high-quality stains to ensure a rich, even finish. Whether it’s decks, fences, doors, or wood trim, staining helps preserve the wood and improve its appearance. The result is a durable finish that highlights the character of the wood.</p>
+           
         </div>
-        <div class="fg">
-          <label>Service Needed *</label>
-          <select required>
-            <option value="" disabled selected>Select a service…</option>
-            <option>Interior Painting</option>
-            <option>Exterior Painting</option>
-            <option>Drywall Repairs</option>
-            <option>Cabinet Painting</option>
-            <option>Staining</option>
-            <option>Commercial Painting</option>
-            <option>Multiple / Not Sure</option>
-          </select>
+    </div>
+    </div>
+    <div class="group cursor-pointer" style="animation: 0.6s ease-out 0.5s 1 normal both running fadeInUp;">
+        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+            <div class="relative w-full h-96 overflow-hidden"><img alt="Nova Education" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="images/commercial.png">
+                <div
+                class="absolute top-6 left-6 bg-amber-900/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2"><i class="ri-bookmark-line text-white text-sm"></i><span class="text-white text-sm font-medium">Commerical Painting</span></div>
         </div>
-        <div class="fg">
-          <label>Project Details</label>
-          <textarea placeholder="Briefly describe your project…"></textarea>
+        <div class="p-8">
+            <h3 class="text-3xl font-serif text-amber-900 mb-3">Commerical Painting</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Our commercial painting services deliver professional, efficient, and high-quality results for businesses of all sizes. We work around your schedule to minimize disruption and ensure a clean, durable finish. From offices and retail spaces to warehouses and storefronts, we use premium paints and techniques to enhance your property’s appearance and protect surfaces for years to come.</p>
+          
         </div>
-        <button type="submit" class="form-btn">
-          <i class="fas fa-paper-plane"></i> Send My Request
-        </button>
-        <div class="form-ok" id="ctaFormOk">
-          <i class="fas fa-check-circle"></i> Thanks! We'll be in touch within 24 hours.
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 class="text-5xl md:text-6xl font-serif text-amber-900 text-center mb-16">What Clients Say</h2>
+            <div class="relative">
+                <div class="flex justify-start mb-8">
+                    <div class="bg-amber-800 text-white px-6 py-3 rounded-full flex items-center gap-2"><i class="ri-star-fill text-amber-300 text-lg"></i><span class="font-semibold text-lg">5</span></div>
+                </div>
+                <div class="mb-10">
+                    <p class="text-2xl md:text-3xl font-serif text-amber-900 leading-relaxed">"The team at Exclusive Painting completely transformed our living room and kitchen. The prep work was thorough, the finish is flawless, and they were done ahead of schedule. We've already booked them for our exterior next spring."</p>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-200"><img alt="Elena Rodriguez" class="w-full h-full object-cover" src="images/review1.jpg"></div>
+                        <div>
+                            <div class="font-semibold text-lg text-amber-900">Sarah M.</div>
+                            <div class="text-sm text-amber-700">Homeowner, Mississauga</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button class="w-12 h-12 rounded-lg border-2 border-amber-300 flex items-center justify-center hover:border-amber-800 transition-colors cursor-pointer" aria-label="Previous testimonial"><i class="ri-arrow-left-line text-amber-800"></i></button>
+                        <button class="w-12 h-12 rounded-lg bg-amber-800 flex items-center justify-center hover:bg-amber-900 transition-colors cursor-pointer" aria-label="Next testimonial"><i class="ri-arrow-right-line text-white"></i></button>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-2 mt-10">
+                    <button class="h-1.5 rounded-full transition-all cursor-pointer w-1.5 bg-amber-300" aria-label="Go to testimonial 1"></button>
+                    <button class="h-1.5 rounded-full transition-all cursor-pointer w-1.5 bg-amber-300" aria-label="Go to testimonial 2"></button>
+                    <button class="h-1.5 rounded-full transition-all cursor-pointer w-8 bg-amber-800" aria-label="Go to testimonial 3"></button>
+                </div>
+            </div>
         </div>
-      </form>
+    </section>
+    <section id="services" class="py-24 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-5xl md:text-6xl font-serif text-amber-900 text-center mb-16">Our Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100" style="animation: 0.6s ease-out 0s 1 normal both running fadeInUp;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-palette-line text-3xl text-amber-700"></i></div>
+                    <h3 class="text-2xl font-bold text-amber-900 mb-4">5+ Years Experience</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">A proven track record across hundreds of residential and commercial projects throughout the GTA. We've seen it all and know how to handle every surface and challenge.</p>
+                    <div class="mt-6 pt-6 border-t border-amber-100">
+                        <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100" style="animation: 0.6s ease-out 0.1s 1 normal both running fadeInUp;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-layout-line text-3xl text-amber-700"></i></div>
+                    <h3 class="text-2xl font-bold text-amber-900 mb-4">Premium Quality Work</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">We use top-grade, professional paints and materials only. Proper preparation, precise cutting, and flawless finishes — we don't cut corners, ever.</p>
+                    <div class="mt-6 pt-6 border-t border-amber-100">
+                        <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-amber-100" style="animation: 0.6s ease-out 0.2s 1 normal both running fadeInUp;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center mb-6"><i class="ri-smartphone-line text-3xl text-amber-700"></i></div>
+                    <h3 class="text-2xl font-bold text-amber-900 mb-4">Affordable Pricing</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Transparent, itemized quotes with no hidden fees or surprise charges. You get premium craftsmanship at prices that genuinely fit your budget.</p>
+                    <div class="mt-6 pt-6 border-t border-amber-100">
+                        <div class="flex items-center justify-between group"><span class="text-sm font-medium text-amber-800">Learn More</span><i class="ri-arrow-right-line text-amber-800 group-hover:translate-x-2 transition-transform"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-24 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-amber-900 mb-6">Ready to Transform Your Home?</h2>
+            <p class="text-xl text-amber-800 mb-10">Let's discuss your next design </p>
+            <button class="bg-amber-800 text-white px-12 py-4 rounded-full text-base font-medium hover:bg-amber-900 transition-colors inline-flex items-center gap-2 whitespace-nowrap cursor-pointer mb-16">Start a Conversation<i class="ri-arrow-right-line"></i></button>
+        </div>
+    </section>
+    <footer class="bg-amber-900 text-white py-16 px-6 lg:px-8 mx-6 lg:mx-8 mb-6 rounded-3xl">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Exclusive Painting</h3>
+                    <p class="text-amber-200 text-sm leading-relaxed">Professional painting services that bring new life to your property</p>
+                </div>
+                <div>
+                    <h4 class="text-base font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#projects" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">Projects</a></li>
+                        <li><a href="#about" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">About Us</a></li>
+                        <li><a href="#services" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">Services</a></li>
+                        <li><a href="#contact" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">Contact</a></li>
+                        <li><a href="#careers" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-semibold mb-6">Connect</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-amber-200 text-sm hover:text-white transition-colors flex items-center gap-2 cursor-pointer"><i class="ri-instagram-line text-lg"></i>Instagram</a></li>
+                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-amber-200 text-sm hover:text-white transition-colors flex items-center gap-2 cursor-pointer"><i class="ri-linkedin-line text-lg"></i>LinkedIn</a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-amber-200 text-sm hover:text-white transition-colors flex items-center gap-2 cursor-pointer"><i class="ri-facebook-line text-lg"></i>Facebook</a></li>
+                        <li><a href="https://google.com" target="_blank" rel="noopener noreferrer" class="text-amber-200 text-sm hover:text-white transition-colors flex items-center gap-2 cursor-pointer"><i class="ri-google-line text-lg"></i>Google</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base font-semibold mb-6">Stay Updated</h4>
+                    <p class="text-amber-200 text-sm mb-4">Get design insights and case studies delivered to your inbox.</p>
+                    <div class="relative">
+                        <input placeholder="Your email" class="w-full bg-white/10 border border-white/20 rounded-full px-5 py-3 pr-12 text-sm text-white placeholder-amber-200 focus:outline-none focus:border-white/40 transition-colors" type="email">
+                        <button class="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full flex items-center justify-center hover:bg-amber-50 transition-colors cursor-pointer"><i class="ri-arrow-right-line text-amber-900"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-amber-200 text-sm">© 2026 Exclusive Painting. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                     <a href="https://techgram.ca/" target="_blank" rel="noopener noreferrer" class="text-amber-200 text-sm hover:text-white transition-colors cursor-pointer">Designed and Managed by Techgram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
     </div>
 
-    <!-- RIGHT: contact details -->
-    <div class="cta-contact-panel">
-      <div>
-        <h3 class="cta-panel-heading">Let's talk about your project</h3>
-        <p class="cta-panel-sub">Fill out the form and a member of our team will reach out within 24 hours to discuss your vision and provide a transparent, itemized quote — no pressure, no obligation.</p>
-      </div>
-      <div class="cta-info-list">
-        <div class="cta-ci-item">
-          <div class="cta-ci-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="cta-ci-text">
-            <h4>Service Area</h4>
-            <p>Greater Toronto Area (GTA)<br>Toronto, Mississauga, Brampton &amp; surrounding cities</p>
-          </div>
-        </div>
-        <div class="cta-ci-item">
-          <div class="cta-ci-icon"><i class="fas fa-phone"></i></div>
-          <div class="cta-ci-text">
-            <h4>Call Us</h4>
-            <a href="tel:+14161234567">(416) 123-4567</a>
-          </div>
-        </div>
-        <div class="cta-ci-item">
-          <div class="cta-ci-icon"><i class="fas fa-envelope"></i></div>
-          <div class="cta-ci-text">
-            <h4>Email Us</h4>
-            <a href="mailto:info@exclusivepainting.ca">info@exclusivepainting.ca</a>
-          </div>
-        </div>
-        <div class="cta-ci-item">
-          <div class="cta-ci-icon"><i class="fas fa-clock"></i></div>
-          <div class="cta-ci-text">
-            <h4>Business Hours</h4>
-            <p>Mon–Fri: 8am – 7pm<br>Saturday: 9am – 5pm</p>
-          </div>
-        </div>
-        <div class="cta-ci-item">
-          <div class="cta-ci-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="cta-ci-text">
-            <h4>Our Promise</h4>
-            <p>Fully insured, satisfaction guaranteed.<br>If it's not right, we make it right — always.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /.cta-split -->
-
-  <div class="cta-logos">
-    <p class="cta-logos-label">Proudly serving across the GTA</p>
-    <div class="cta-logos-row">
-      <span class="cta-logo-item">Toronto</span>
-      <span class="cta-logo-item">Mississauga</span>
-      <span class="cta-logo-item">Brampton</span>
-      <span class="cta-logo-item">Vaughan</span>
-      <span class="cta-logo-item">Markham</span>
-      <span class="cta-logo-item">Richmond Hill</span>
-      <span class="cta-logo-item">Oakville</span>
-      <span class="cta-logo-item">Burlington</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<section id="contact">
-  <div class="contact-grid">
-    <div class="contact-left">
-      <p class="section-label">Get In Touch</p>
-      <h2>Request a Free Estimate</h2>
-      <p>Ready to refresh your space? Fill out the form and we'll get back to you within 24 hours with a detailed, transparent quote — no obligation.</p>
-      <div class="contact-info-items">
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="ci-text">
-            <h4>Service Area</h4>
-            <p>Greater Toronto Area (GTA)<br>Toronto, Mississauga, Brampton &amp; surrounding</p>
-          </div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fas fa-phone"></i></div>
-          <div class="ci-text">
-            <h4>Phone</h4>
-            <a href="tel:+14161234567">(416) 123-4567</a>
-          </div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
-          <div class="ci-text">
-            <h4>Email</h4>
-            <a href="mailto:info@exclusivepainting.ca">info@exclusivepainting.ca</a>
-          </div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon"><i class="fas fa-clock"></i></div>
-          <div class="ci-text">
-            <h4>Hours</h4>
-            <p>Mon–Fri: 8am – 7pm &nbsp;|&nbsp; Sat: 9am – 5pm</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form-box">
-      <h3>Get Your Free Estimate</h3>
-      <form onsubmit="submitForm(event)" data-ok="contactFormOk">
-        <div class="form-row">
-          <div class="fg">
-            <label>First Name *</label>
-            <input type="text" placeholder="John" required />
-          </div>
-          <div class="fg">
-            <label>Last Name *</label>
-            <input type="text" placeholder="Smith" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="fg">
-            <label>Email *</label>
-            <input type="email" placeholder="john@email.com" required />
-          </div>
-          <div class="fg">
-            <label>Phone</label>
-            <input type="tel" placeholder="(416) 000-0000" />
-          </div>
-        </div>
-        <div class="fg">
-          <label>Service Needed *</label>
-          <select required>
-            <option value="" disabled selected>Select a service…</option>
-            <option>Interior Painting</option>
-            <option>Exterior Painting</option>
-            <option>Drywall Repairs</option>
-            <option>Cabinet Painting</option>
-            <option>Staining</option>
-            <option>Commercial Painting</option>
-            <option>Multiple / Not Sure</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label>City / Area</label>
-          <input type="text" placeholder="e.g. Toronto, Mississauga…" />
-        </div>
-        <div class="fg">
-          <label>Project Details</label>
-          <textarea placeholder="Tell us about your project…"></textarea>
-        </div>
-        <button type="submit" class="form-btn">
-          <i class="fas fa-paper-plane"></i> Send My Request
-        </button>
-        <div class="form-ok" id="contactFormOk">
-          <i class="fas fa-check-circle"></i> Thanks! We'll be in touch within 24 hours.
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand-name">Exclusive Painting</div>
-      <p class="footer-brand-desc">Premium painting services across the Greater Toronto Area. Quality craftsmanship, clean professional teams, and transparent pricing — since 2019.</p>
-    </div>
-    <div>
-      <p class="footer-col-title">Quick Links</p>
-      <ul class="footer-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#why">Why Choose Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">Services</p>
-      <ul class="footer-links">
-        <li><a href="#services">Interior Painting</a></li>
-        <li><a href="#services">Exterior Painting</a></li>
-        <li><a href="#services">Drywall Repairs</a></li>
-        <li><a href="#services">Cabinet Painting</a></li>
-        <li><a href="#services">Staining</a></li>
-        <li><a href="#services">Commercial Painting</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-col-title">Stay Updated</p>
-      <p style="font-size:13px;margin-bottom:16px;line-height:1.6;">Get tips, seasonal offers, and painting inspiration straight to your inbox.</p>
-      <div class="footer-newsletter">
-        <input type="email" placeholder="Your email" />
-        <button><i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>&copy; 2024 Exclusive Painting. All rights reserved.</span>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Website by EP</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  /* ── Nav: transparent → solid on scroll ── */
-  const navbar = document.getElementById('navbar');
-  function handleNavScroll() {
-    if (window.scrollY > 40) {
-      navbar.classList.add('nav-scrolled');
-    } else {
-      navbar.classList.remove('nav-scrolled');
-    }
-  }
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
-  handleNavScroll();
-
-  function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.remove('open');
-  }));
-
-  /* ── Testimonials ── */
-  const testis = [
-    {
-      quote: '"The team at Exclusive Painting completely transformed our living room and kitchen. The prep work was thorough, the finish is flawless, and they were done ahead of schedule. We\'ve already booked them for our exterior next spring."',
-      name: 'Sarah M.',
-      role: 'Homeowner, Mississauga',
-      avatar: 'S'
-    },
-    {
-      quote: '"Hired Exclusive Painting for a full exterior repaint and couldn\'t be happier. They power washed, scraped, primed, and painted — top to bottom — in just two days. Neighbours keep asking who did the work!"',
-      name: 'David R.',
-      role: 'Homeowner, Vaughan',
-      avatar: 'D'
-    },
-    {
-      quote: '"Professional, punctual, and incredibly clean. My cabinet painting looks like brand new from the factory. They masked everything perfectly and there wasn\'t a drop of paint anywhere it shouldn\'t be. Highly recommend."',
-      name: 'Linda K.',
-      role: 'Homeowner, Toronto',
-      avatar: 'L'
-    },
-    {
-      quote: '"I was amazed at how quickly they finished our entire main floor. Two coats, clean lines around every door and window, and zero mess left behind. The colour consultant they recommended was spot on too. Absolutely worth every penny."',
-      name: 'James T.',
-      role: 'Homeowner, Brampton',
-      avatar: 'J'
-    },
-    {
-      quote: '"We hired Exclusive Painting to repaint our office space over a long weekend. They showed up exactly on time, wrapped everything carefully, and delivered a clean modern finish. Our clients keep complimenting the fresh look!"',
-      name: 'Priya N.',
-      role: 'Business Owner, Markham',
-      avatar: 'P'
-    }
-  ];
-
-  let current = 0;
-
-  function updateTesti() {
-    const slide = document.getElementById('testiSlide');
-    slide.classList.add('testi-fade');
-    setTimeout(() => {
-      const t = testis[current];
-      document.getElementById('testiQuote').textContent = t.quote;
-      document.getElementById('testiName').textContent = t.name;
-      document.getElementById('testiRole').textContent = t.role;
-      document.getElementById('testiAvatar').textContent = t.avatar;
-      document.querySelectorAll('.testi-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === current);
-      });
-      slide.classList.remove('testi-fade');
-    }, 300);
-  }
-
-  function nextTesti() { current = (current + 1) % testis.length; updateTesti(); }
-  function prevTesti() { current = (current - 1 + testis.length) % testis.length; updateTesti(); }
-  function goTesti(i)  { current = i; updateTesti(); }
-
-  /* ── Contact forms ── */
-  function submitForm(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-btn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
-    setTimeout(() => {
-      btn.style.display = 'none';
-      const okId = btn.closest('form').dataset.ok;
-      document.getElementById(okId).style.display = 'flex';
-    }, 1200);
-  }
-</script>
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
